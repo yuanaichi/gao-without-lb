@@ -363,6 +363,13 @@ export default {
         self.currentAccount.ether = web3.fromWei(ethBalance, 'ether').toFixed(5);
       });
 
+      this.miningInfo = {
+        profit: 0,
+        leftEther: 0,
+        totalEther: 0,
+        partialAttempt: 0
+      };
+
       for (let defaultPoolInstance of defaultPoolInstances) {
         defaultPoolInstance.find_contribution.call(this.currentAccount.address, (err, contribution) => {
           let [a, partial_attempt, total_contribution_for_epoch, total_contribution_for_epoch_remaining, balance, f, g] = contribution;
